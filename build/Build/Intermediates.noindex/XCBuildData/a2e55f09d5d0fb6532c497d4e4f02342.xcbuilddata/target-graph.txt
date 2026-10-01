@@ -1,2 +1,0 @@
-Target dependency graph (1 target)
-Target 'LearnSwiftApp' in project 'LearnSwiftApp' (no dependencies)
