@@ -1,0 +1,56 @@
+{
+  "source": "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Views/DinoHighScoreView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "ALL-TIME RUN RECORD",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 19
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 23
+        }
+      },
+      {
+        "comment": "",
+        "key": "Points scored in a single 3D run",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "Career Statistics",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 40
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rank Progression",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 56
+        }
+      },
+      {
+        "comment": "",
+        "key": "UNLOCKED",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 134
+        }
+      }
+    ]
+  },
+  "version": 1
+}

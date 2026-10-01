@@ -1,0 +1,219 @@
+{
+  "" : {
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/LearnSwiftApp-primary.dia",
+    "emit-module-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/LearnSwiftApp-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/LearnSwiftApp-primary-emit-module.dia",
+    "pch" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/LearnSwiftApp-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/LearnSwiftApp-primary.swiftdeps"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/ContentView.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/ContentView.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Engine/Dino3DScene.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Dino3DScene.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Dino3DScene.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Dino3DScene.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Dino3DScene.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Dino3DScene.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Dino3DScene.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Dino3DScene.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Dino3DScene~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Extensions/Color+Hex.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Color+Hex.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Color+Hex.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Color+Hex.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Color+Hex.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Color+Hex.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Color+Hex.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Color+Hex.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Color+Hex~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Extensions/Theme.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Theme.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Theme.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Theme.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Theme.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Theme.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Theme.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Theme.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Theme~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/LearnSwiftAppApp.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/LearnSwiftAppApp.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/LearnSwiftAppApp.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/LearnSwiftAppApp.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/LearnSwiftAppApp.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/LearnSwiftAppApp.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/LearnSwiftAppApp.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/LearnSwiftAppApp.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/LearnSwiftAppApp~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Managers/DinoGameManager.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoGameManager.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoGameManager.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoGameManager.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoGameManager.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoGameManager.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoGameManager.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoGameManager.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoGameManager~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Models/DinoSkin.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoSkin.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoSkin.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoSkin.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoSkin.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoSkin.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoSkin.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoSkin.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoSkin~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Models/GameMission.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/GameMission.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/GameMission.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/GameMission.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/GameMission.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/GameMission.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/GameMission.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/GameMission.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/GameMission~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Models/PowerUpType.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/PowerUpType.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/PowerUpType.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/PowerUpType.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/PowerUpType.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/PowerUpType.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/PowerUpType.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/PowerUpType.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/PowerUpType~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Services/AudioService.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/AudioService.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/AudioService.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/AudioService.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/AudioService.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/AudioService.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/AudioService.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/AudioService.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/AudioService~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Services/HapticsManager.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/HapticsManager.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/HapticsManager.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/HapticsManager.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/HapticsManager.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/HapticsManager.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/HapticsManager.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/HapticsManager.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/HapticsManager~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Services/StorageKeys.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/StorageKeys.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/StorageKeys.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/StorageKeys.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/StorageKeys.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/StorageKeys.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/StorageKeys.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/StorageKeys.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/StorageKeys~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Views/Dino3DRunnerView.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Dino3DRunnerView.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Dino3DRunnerView.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Dino3DRunnerView.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Dino3DRunnerView.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Dino3DRunnerView.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Dino3DRunnerView.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Dino3DRunnerView.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/Dino3DRunnerView~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Views/DinoHighScoreView.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHighScoreView.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHighScoreView.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHighScoreView.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHighScoreView.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHighScoreView.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHighScoreView.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHighScoreView.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHighScoreView~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Views/DinoHomeView.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHomeView.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHomeView.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHomeView.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHomeView.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHomeView.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHomeView.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHomeView.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHomeView~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Views/DinoHowToPlayView.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHowToPlayView.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHowToPlayView.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHowToPlayView.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHowToPlayView.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHowToPlayView.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHowToPlayView.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHowToPlayView.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoHowToPlayView~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Views/DinoMissionsView.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoMissionsView.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoMissionsView.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoMissionsView.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoMissionsView.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoMissionsView.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoMissionsView.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoMissionsView.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoMissionsView~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Views/DinoSettingsView.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoSettingsView.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoSettingsView.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoSettingsView.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoSettingsView.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoSettingsView.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoSettingsView.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoSettingsView.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoSettingsView~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Views/DinoShopView.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoShopView.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoShopView.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoShopView.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoShopView.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoShopView.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoShopView.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoShopView.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinoShopView~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Views/DinosaurFlowView.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinosaurFlowView.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinosaurFlowView.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinosaurFlowView.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinosaurFlowView.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinosaurFlowView.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinosaurFlowView.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinosaurFlowView.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/DinosaurFlowView~partial.swiftmodule"
+  },
+  "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/nsm/Documents/LearnSwiftApp/build/Build/Intermediates.noindex/LearnSwiftApp.build/Debug-iphonesimulator/LearnSwiftApp.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  }
+}

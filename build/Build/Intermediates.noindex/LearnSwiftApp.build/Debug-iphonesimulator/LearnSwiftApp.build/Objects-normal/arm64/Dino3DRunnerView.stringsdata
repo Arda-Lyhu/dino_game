@@ -1,0 +1,200 @@
+{
+  "source": "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Views/Dino3DRunnerView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 51
+        }
+      },
+      {
+        "comment": "",
+        "key": "PTS",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 56
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lldm",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 64
+        }
+      },
+      {
+        "comment": "",
+        "key": "SHIELD",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 75
+        }
+      },
+      {
+        "comment": "",
+        "key": "MAGNET",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 86
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 102
+        }
+      },
+      {
+        "comment": "",
+        "key": "DUCK",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 134
+        }
+      },
+      {
+        "comment": "",
+        "key": "JUMP",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 153
+        }
+      },
+      {
+        "comment": "",
+        "key": "GAME PAUSED",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 175
+        }
+      },
+      {
+        "comment": "",
+        "key": "Resume",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 183
+        }
+      },
+      {
+        "comment": "",
+        "key": "Restart",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 195
+        }
+      },
+      {
+        "comment": "",
+        "key": "Quit to Menu",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 206
+        }
+      },
+      {
+        "comment": "",
+        "key": "GAME OVER",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 247
+        }
+      },
+      {
+        "comment": "",
+        "key": "NEW RECORD ACHIEVED!",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 236
+        }
+      },
+      {
+        "comment": "",
+        "key": "Final Run Score",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 254
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 258
+        }
+      },
+      {
+        "comment": "",
+        "key": "Distance Survived",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 264
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld m",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 268
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gold Collected",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 274
+        }
+      },
+      {
+        "comment": "",
+        "key": "+%lld",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 280
+        }
+      },
+      {
+        "comment": "",
+        "key": "All-Time Best",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 289
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 293
+        }
+      },
+      {
+        "comment": "",
+        "key": "Play Again",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 308
+        }
+      },
+      {
+        "comment": "",
+        "key": "Main Menu",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 324
+        }
+      }
+    ]
+  },
+  "version": 1
+}

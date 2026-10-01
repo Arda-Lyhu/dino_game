@@ -1,0 +1,40 @@
+{
+  "source": "/Users/nsm/Documents/LearnSwiftApp/LearnSwiftApp/Views/DinoHowToPlayView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Runner Master Guide",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 17
+        }
+      },
+      {
+        "comment": "",
+        "key": "Master the touch gestures to survive the prehistoric wasteland!",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 21
+        }
+      },
+      {
+        "comment": "",
+        "key": "Action Controls",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 34
+        }
+      },
+      {
+        "comment": "",
+        "key": "Hazard Encyclopedia",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 64
+        }
+      }
+    ]
+  },
+  "version": 1
+}
