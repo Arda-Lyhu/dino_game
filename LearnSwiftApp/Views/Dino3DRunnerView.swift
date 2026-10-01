@@ -27,18 +27,28 @@ struct Dino3DRunnerView: View {
             SceneKitView(scene: scene)
                 .ignoresSafeArea()
                 .gesture(
-                    DragGesture(minimumDistance: 15)
+                    DragGesture(minimumDistance: 12)
                         .onEnded { value in
-                            if value.translation.height < -20 {
-                                performJump()
-                            } else if value.translation.height > 20 {
-                                performDuck()
+                            let h = value.translation.width
+                            let v = value.translation.height
+                            
+                            if abs(h) > abs(v) {
+                                // Horizontal Swipe (Lane Change)
+                                if h < -20 {
+                                    performMoveLeft()
+                                } else if h > 20 {
+                                    performMoveRight()
+                                }
+                            } else {
+                                // Vertical Swipe (Jump / Duck)
+                                if v < -20 {
+                                    performJump()
+                                } else if v > 20 {
+                                    performDuck()
+                                }
                             }
                         }
                 )
-                .onTapGesture {
-                    performJump()
-                }
             
             // HUD Overlay (In-Game)
             if !isGameOver {
@@ -49,12 +59,12 @@ struct Dino3DRunnerView: View {
                         VStack(alignment: .leading, spacing: 2) {
                             HStack(spacing: 6) {
                                 Text("\(score)")
-                                    .font(.system(size: 34, weight: .black, design: .rounded))
+                                    .font(.system(size: 28, weight: .black, design: .rounded))
                                     .foregroundStyle(.white)
                                     .shadow(color: .black.opacity(0.4), radius: 3, x: 0, y: 2)
                                 
                                 Text("PTS")
-                                    .font(.system(size: 12, weight: .black, design: .monospaced))
+                                    .font(.system(size: 11, weight: .black, design: .monospaced))
                                     .foregroundStyle(AppTheme.gold)
                             }
                             
@@ -62,10 +72,13 @@ struct Dino3DRunnerView: View {
                                 Image(systemName: "figure.run")
                                     .font(.system(size: 11))
                                 Text("\(distance)m")
-                                    .font(.system(size: 13, weight: .bold, design: .rounded))
+                                    .font(.system(size: 12, weight: .bold, design: .rounded))
                             }
                             .foregroundStyle(.white.opacity(0.85))
                         }
+                        .padding(.horizontal, 14)
+                        .padding(.vertical, 8)
+                        .glassCard(cornerRadius: 16)
                         
                         Spacer()
                         
@@ -123,45 +136,75 @@ struct Dino3DRunnerView: View {
                     
                     Spacer()
                     
-                    // Bottom On-Screen Action Touch Controls
-                    HStack(spacing: 24) {
-                        Button {
-                            performDuck()
-                        } label: {
-                            VStack(spacing: 4) {
-                                Image(systemName: "arrow.down.to.line")
-                                    .font(.system(size: 22, weight: .bold))
-                                Text("DUCK")
-                                    .font(.system(size: 10, weight: .heavy, design: .monospaced))
+                    // Bottom On-Screen Action Touch Controls (Temple Run 3-Lane + Jump/Duck)
+                    HStack(alignment: .bottom, spacing: 14) {
+                        // Left / Right Lane Switch Controls
+                        HStack(spacing: 10) {
+                            Button {
+                                performMoveLeft()
+                            } label: {
+                                Image(systemName: "arrow.left")
+                                    .font(.system(size: 20, weight: .bold))
+                                    .foregroundStyle(.white)
+                                    .frame(width: 58, height: 58)
+                                    .background(Color(hex: "#101622").opacity(0.75))
+                                    .clipShape(Circle())
+                                    .overlay(Circle().stroke(Color.white.opacity(0.25), lineWidth: 1.5))
                             }
-                            .foregroundStyle(.white)
-                            .frame(width: 72, height: 72)
-                            .background(Color(hex: "#101622").opacity(0.75))
-                            .clipShape(Circle())
-                            .overlay(Circle().stroke(Color.white.opacity(0.2), lineWidth: 1.5))
-                            .shadow(color: .black.opacity(0.4), radius: 8)
+                            
+                            Button {
+                                performMoveRight()
+                            } label: {
+                                Image(systemName: "arrow.right")
+                                    .font(.system(size: 20, weight: .bold))
+                                    .foregroundStyle(.white)
+                                    .frame(width: 58, height: 58)
+                                    .background(Color(hex: "#101622").opacity(0.75))
+                                    .clipShape(Circle())
+                                    .overlay(Circle().stroke(Color.white.opacity(0.25), lineWidth: 1.5))
+                            }
                         }
                         
                         Spacer()
                         
-                        Button {
-                            performJump()
-                        } label: {
-                            VStack(spacing: 4) {
-                                Image(systemName: "arrow.up")
-                                    .font(.system(size: 26, weight: .bold))
-                                Text("JUMP")
-                                    .font(.system(size: 10, weight: .heavy, design: .monospaced))
+                        // Slide / Duck & Jump Controls
+                        HStack(spacing: 12) {
+                            Button {
+                                performDuck()
+                            } label: {
+                                VStack(spacing: 2) {
+                                    Image(systemName: "arrow.down.to.line")
+                                        .font(.system(size: 18, weight: .bold))
+                                    Text("SLIDE")
+                                        .font(.system(size: 9, weight: .heavy, design: .monospaced))
+                                }
+                                .foregroundStyle(.white)
+                                .frame(width: 64, height: 64)
+                                .background(Color(hex: "#101622").opacity(0.85))
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color.white.opacity(0.3), lineWidth: 1.5))
+                                .shadow(color: .black.opacity(0.4), radius: 6)
                             }
-                            .foregroundStyle(.black)
-                            .frame(width: 82, height: 82)
-                            .background(AppTheme.playButtonGradient)
-                            .clipShape(Circle())
-                            .overlay(Circle().stroke(Color.white.opacity(0.5), lineWidth: 2))
-                            .shadow(color: AppTheme.neonGreen.opacity(0.5), radius: 12, x: 0, y: 6)
+                            
+                            Button {
+                                performJump()
+                            } label: {
+                                VStack(spacing: 2) {
+                                    Image(systemName: "arrow.up")
+                                        .font(.system(size: 22, weight: .bold))
+                                    Text("JUMP")
+                                        .font(.system(size: 10, weight: .heavy, design: .monospaced))
+                                }
+                                .foregroundStyle(.black)
+                                .frame(width: 74, height: 74)
+                                .background(AppTheme.playButtonGradient)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color.white.opacity(0.6), lineWidth: 2))
+                                .shadow(color: AppTheme.neonGreen.opacity(0.5), radius: 12, x: 0, y: 5)
+                            }
                         }
                     }
-                    .padding(.horizontal, 28)
+                    .padding(.horizontal, 20)
                     .padding(.bottom, 36)
                 }
             }
@@ -375,10 +418,24 @@ struct Dino3DRunnerView: View {
         restartGame()
     }
     
+    private func performMoveLeft() {
+        guard !isGameOver, !isPaused else { return }
+        scene.moveLeft()
+        HapticsManager.shared.impact(.light)
+        AudioService.shared.playTapSound()
+    }
+    
+    private func performMoveRight() {
+        guard !isGameOver, !isPaused else { return }
+        scene.moveRight()
+        HapticsManager.shared.impact(.light)
+        AudioService.shared.playTapSound()
+    }
+    
     private func performJump() {
         guard !isGameOver, !isPaused else { return }
         scene.jump()
-        HapticsManager.shared.impact(.light)
+        HapticsManager.shared.impact(.medium)
         AudioService.shared.playJumpSound()
     }
     

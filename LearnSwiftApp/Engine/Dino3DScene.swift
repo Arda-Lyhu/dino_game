@@ -43,13 +43,23 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
     private(set) var isGameOver: Bool = false
     private(set) var isGamePaused: Bool = false
     
-    // Player Motion
+    // Player Motion & 3-Lane System (Temple Run Style)
     private var isGrounded: Bool = true
     private var isDucking: Bool = false
     private var verticalVelocity: Float = 0
     private let gravity: Float = -28.0
     private let jumpForce: Float = 11.5
     private let groundY: Float = 0.0
+    
+    private let lanePositions: [Float] = [-1.5, 0.0, 1.5]
+    private var currentLaneIndex: Int = 1 // 0: Left, 1: Center, 2: Right
+    private var currentDinoX: Float = 0.0
+    private var targetDinoX: Float = 0.0
+    // Dedicated bank angle accumulator – smoothly drives toward target, never derived from position residual
+    private var currentBankAngle: Float = 0.0
+    private var targetBankAngle: Float = 0.0
+    // Stable camera X (exponential decay, frame-rate independent)
+    private var cameraCurrentX: Float = 0.0
     
     // Stats
     private var score: Int = 0
@@ -61,7 +71,11 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
     private var baseSpeed: Float = 14.0
     private var currentSpeed: Float = 14.0
     private var lastObstacleSpawnTime: TimeInterval = 0
+    private var lastFrameTime: TimeInterval = 0
     private var spawnInterval: TimeInterval = 2.0
+    private var runPhase: Float = 0.0
+    private var tailPhase: Float = 0.0
+    private var lastReportedDistance: Int = -1
     
     // Active Spawns
     private var activeGroundSegments: [SCNNode] = []
@@ -93,7 +107,7 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
     // MARK: - Setup Scene
     private func setupScene() {
         self.physicsWorld.contactDelegate = self
-        self.physicsWorld.gravity = SCNVector3(0, 0, 0) // We use custom deterministic kinematic physics
+        self.physicsWorld.gravity = SCNVector3(0, 0, 0)
         
         setupLightingAndAtmosphere()
         setupCamera()
@@ -103,8 +117,8 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
     }
     
     private func setupLightingAndAtmosphere() {
-        // Sky background
-        background.contents = UIColor(red: 0.94, green: 0.96, blue: 0.99, alpha: 1.0)
+        // Sky background gradient tone
+        background.contents = UIColor(red: 0.88, green: 0.93, blue: 0.98, alpha: 1.0)
         
         // Sun Directional Light
         sunLightNode = SCNNode()
@@ -115,16 +129,16 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
         sun.shadowMode = .deferred
         sun.shadowSampleCount = 4
         sun.shadowRadius = 3.0
-        sun.shadowColor = UIColor.black.withAlphaComponent(0.3)
+        sun.shadowColor = UIColor.black.withAlphaComponent(0.28)
         sunLightNode.light = sun
-        sunLightNode.position = SCNVector3(10, 20, 15)
-        sunLightNode.eulerAngles = SCNVector3(-Float.pi / 3, Float.pi / 4, 0)
+        sunLightNode.position = SCNVector3(6, 18, 12)
+        sunLightNode.eulerAngles = SCNVector3(-Float.pi / 3, Float.pi / 6, 0)
         rootNode.addChildNode(sunLightNode)
         
-        // Ambient Warm Light
+        // Ambient Light
         let ambient = SCNLight()
         ambient.type = .ambient
-        ambient.color = UIColor(red: 0.7, green: 0.75, blue: 0.85, alpha: 1.0)
+        ambient.color = UIColor(red: 0.75, green: 0.80, blue: 0.90, alpha: 1.0)
         let ambientNode = SCNNode()
         ambientNode.light = ambient
         rootNode.addChildNode(ambientNode)
@@ -133,13 +147,14 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
     private func setupCamera() {
         cameraNode = SCNNode()
         let camera = SCNCamera()
-        camera.fieldOfView = 50
+        camera.fieldOfView = 58
         camera.zNear = 0.5
-        camera.zFar = 150
+        camera.zFar = 160
         cameraNode.camera = camera
-        // Side-isometric view of the runner
-        cameraNode.position = SCNVector3(8, 4.5, 12)
-        cameraNode.eulerAngles = SCNVector3(-0.15, 0.55, 0)
+        
+        // Dynamic Temple Run 3rd Person Over-the-Shoulder Chase Camera
+        cameraNode.position = SCNVector3(0, groundY + 4.2, 7.2)
+        cameraNode.eulerAngles = SCNVector3(-0.28, 0, 0)
         rootNode.addChildNode(cameraNode)
     }
     
@@ -157,33 +172,44 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
     private func createGroundSegment(length: Float) -> SCNNode {
         let node = SCNNode()
         
-        // Ground Box
-        let box = SCNBox(width: 14.0, height: 0.5, length: CGFloat(length), chamferRadius: 0.1)
+        // Ground Sand Bed
+        let box = SCNBox(width: 16.0, height: 0.5, length: CGFloat(length), chamferRadius: 0.1)
         let mat = SCNMaterial()
-        mat.diffuse.contents = UIColor(red: 0.90, green: 0.82, blue: 0.68, alpha: 1.0) // Sand tone
+        mat.diffuse.contents = UIColor(red: 0.90, green: 0.82, blue: 0.68, alpha: 1.0)
         mat.roughness.contents = 0.9
         box.materials = [mat]
         let groundBox = SCNNode(geometry: box)
         groundBox.position = SCNVector3(0, 0, 0)
         node.addChildNode(groundBox)
         
-        // Road / track lines
-        let trackBox = SCNBox(width: 3.5, height: 0.52, length: CGFloat(length), chamferRadius: 0.05)
+        // 3-Lane Running Highway Track
+        let trackBox = SCNBox(width: 5.6, height: 0.52, length: CGFloat(length), chamferRadius: 0.05)
         let trackMat = SCNMaterial()
-        trackMat.diffuse.contents = UIColor(red: 0.84, green: 0.74, blue: 0.58, alpha: 1.0)
+        trackMat.diffuse.contents = UIColor(red: 0.82, green: 0.73, blue: 0.58, alpha: 1.0) // Ancient stone path
         trackBox.materials = [trackMat]
         let trackNode = SCNNode(geometry: trackBox)
         node.addChildNode(trackNode)
+        
+        // 3-Lane Dividers (Left/Center divider and Center/Right divider)
+        for dividerX in [-0.75 as Float, 0.75 as Float] {
+            let lineGeo = SCNBox(width: 0.06, height: 0.53, length: CGFloat(length), chamferRadius: 0.02)
+            let lineMat = SCNMaterial()
+            lineMat.diffuse.contents = UIColor(red: 0.70, green: 0.60, blue: 0.48, alpha: 0.6)
+            lineGeo.materials = [lineMat]
+            let lineNode = SCNNode(geometry: lineGeo)
+            lineNode.position = SCNVector3(dividerX, 0, 0)
+            node.addChildNode(lineNode)
+        }
         
         // Decorative low poly rocks on borders
         for _ in 0..<4 {
             let rock = SCNNode(geometry: SCNPyramid(width: CGFloat.random(in: 0.4...0.8), height: CGFloat.random(in: 0.3...0.7), length: CGFloat.random(in: 0.4...0.8)))
             let rockMat = SCNMaterial()
-            rockMat.diffuse.contents = UIColor(red: 0.72, green: 0.65, blue: 0.55, alpha: 1.0)
+            rockMat.diffuse.contents = UIColor(red: 0.68, green: 0.60, blue: 0.50, alpha: 1.0)
             rock.geometry?.materials = [rockMat]
-            let side: Float = Bool.random() ? -3.5 : 3.5
+            let side: Float = Bool.random() ? -3.8 : 3.8
             let zPos = Float.random(in: -length/2...length/2)
-            rock.position = SCNVector3(side + Float.random(in: -1.0...1.0), 0.25, zPos)
+            rock.position = SCNVector3(side + Float.random(in: -0.8...0.8), 0.25, zPos)
             rock.eulerAngles = SCNVector3(0, Float.random(in: 0...Float.pi), 0)
             node.addChildNode(rock)
         }
@@ -228,7 +254,7 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
     private func setupClouds() {
         for _ in 0..<6 {
             let cloud = createCloud()
-            cloud.position = SCNVector3(Float.random(in: -15...15), Float.random(in: 6...12), Float.random(in: -60...10))
+            cloud.position = SCNVector3(Float.random(in: -18...18), Float.random(in: 7...13), Float.random(in: -60...10))
             rootNode.addChildNode(cloud)
             activeClouds.append(cloud)
         }
@@ -267,7 +293,6 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
             dino.addChildNode(sNode)
             shieldVisualNode = sNode
             
-            // Pulse animation
             let pulse = CABasicAnimation(keyPath: "scale")
             pulse.fromValue = SCNVector3(0.95, 0.95, 0.95)
             pulse.toValue = SCNVector3(1.05, 1.05, 1.05)
@@ -308,6 +333,15 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
         isGrounded = true
         isDucking = false
         lastObstacleSpawnTime = 0
+        lastFrameTime = 0
+        
+        // Reset 3-Lane state
+        currentLaneIndex = 1
+        currentDinoX = 0.0
+        targetDinoX = 0.0
+        runPhase = 0.0
+        tailPhase = 0.0
+        lastReportedDistance = -1
         
         // Clean up spawned entities
         for o in activeObstacles { o.removeFromParentNode() }
@@ -323,7 +357,7 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
         dinoBody?.removeAllActions()
         cameraNode?.removeAllActions()
         
-        // Explicitly Reset Dino Pose and Position (Guarantees upright posture)
+        // Explicitly Reset Dino Pose and Position
         dinoNode?.position = SCNVector3(0, groundY + 0.8, 0)
         dinoNode?.eulerAngles = SCNVector3(0, 0, 0)
         dinoNode?.rotation = SCNVector4(0, 0, 0, 0)
@@ -340,14 +374,42 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
         rightArm?.eulerAngles = SCNVector3(0, 0, 0)
         tailNode?.eulerAngles = SCNVector3(0, 0, 0)
         
-        cameraNode?.position = SCNVector3(8, 4.5, 12)
-        cameraNode?.eulerAngles = SCNVector3(-0.15, 0.55, 0)
+        currentBankAngle = 0.0
+        targetBankAngle = 0.0
+        cameraCurrentX = 0.0
+        
+        cameraNode?.position = SCNVector3(0, groundY + 4.2, 7.2)
+        cameraNode?.eulerAngles = SCNVector3(-0.28, 0, 0)
         
         updateShieldVisual()
         gameDelegate?.dinoDidUpdateScore(score, distance: Int(distance), coins: coinsCollected)
     }
     
-    // MARK: - Input Actions
+    // MARK: - Temple Run 3-Lane & Acrobatics Input Actions
+    func moveLeft() {
+        guard isRunning, !isGameOver, !isGamePaused else { return }
+        if currentLaneIndex > 0 {
+            currentLaneIndex -= 1
+            targetDinoX = lanePositions[currentLaneIndex]
+            targetBankAngle = 0.28   // Lean into the left turn, then returns to 0
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.18) { [weak self] in
+                self?.targetBankAngle = 0.0
+            }
+        }
+    }
+    
+    func moveRight() {
+        guard isRunning, !isGameOver, !isGamePaused else { return }
+        if currentLaneIndex < lanePositions.count - 1 {
+            currentLaneIndex += 1
+            targetDinoX = lanePositions[currentLaneIndex]
+            targetBankAngle = -0.28  // Lean into the right turn, then returns to 0
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.18) { [weak self] in
+                self?.targetBankAngle = 0.0
+            }
+        }
+    }
+    
     func jump() {
         guard isRunning, !isGameOver, !isGamePaused else { return }
         if isGrounded {
@@ -375,7 +437,6 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
         dinoBody?.scale = SCNVector3(1.2, 0.5, 1.2)
         dinoBody?.position = SCNVector3(0, 0.15, 0)
         
-        // SceneKit-managed timer: automatically returns to upright after 0.6s
         dinoBody?.removeAction(forKey: "duckTimer")
         let wait = SCNAction.wait(duration: 0.6)
         let unDuck = SCNAction.run { [weak self] _ in
@@ -395,20 +456,40 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         guard isRunning, !isGameOver, !isGamePaused else { return }
         
-        let dt: Float = 1.0 / 60.0
+        let dt: Float = Float(lastFrameTime == 0 ? 1.0 / 60.0 : min(1.0 / 30.0, time - lastFrameTime))
+        lastFrameTime = time
         
         // 1. Distance & Score
         distance += currentSpeed * dt
         let newScore = Int(distance * 0.8)
-        if newScore != score {
+        let curDist = Int(distance)
+        if newScore != score || curDist != lastReportedDistance {
             score = newScore
-            gameDelegate?.dinoDidUpdateScore(score, distance: Int(distance), coins: coinsCollected)
+            lastReportedDistance = curDist
+            gameDelegate?.dinoDidUpdateScore(score, distance: curDist, coins: coinsCollected)
         }
         
         // Gradual speed acceleration
-        currentSpeed = min(32.0, baseSpeed + (distance * 0.012))
+        currentSpeed = min(30.0, baseSpeed + (distance * 0.010))
         
-        // 2. Physics & Dino Jump Movement
+        // 2. 3-Lane Lateral Position Interpolation (snap when close enough to avoid overshooting)
+        let diffX = targetDinoX - currentDinoX
+        if abs(diffX) < 0.004 {
+            currentDinoX = targetDinoX
+        } else {
+            currentDinoX += diffX * min(1.0, 14.0 * dt)
+        }
+        
+        // Bank angle lives on its own smooth track – never computed from position residual
+        // This prevents tilt from oscillating as position settles
+        let bankDiff = targetBankAngle - currentBankAngle
+        if abs(bankDiff) < 0.001 {
+            currentBankAngle = targetBankAngle
+        } else {
+            currentBankAngle += bankDiff * min(1.0, 10.0 * dt)
+        }
+        
+        // 3. Vertical Physics (Jump / Fall)
         if !isGrounded {
             verticalVelocity += gravity * dt
             var pos = dinoNode.position
@@ -419,38 +500,55 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
                 verticalVelocity = 0
                 isGrounded = true
             }
+            pos.x = currentDinoX
             dinoNode.position = pos
+        } else {
+            dinoNode.position.x = currentDinoX
         }
         
-        // 3. Multi-Joint Organic Running Locomotion Animation
+        // Apply bank tilt to root node only – child nodes must NOT also write eulerAngles.z
+        dinoNode.eulerAngles = SCNVector3(0, 0, currentBankAngle)
+        
+        // Frame-rate independent camera X (exponential smoothing constant = 10 rad/s)
+        let camAlpha: Float = 1.0 - exp(-10.0 * dt)
+        let cameraTargetX = currentDinoX * 0.45
+        cameraCurrentX += (cameraTargetX - cameraCurrentX) * camAlpha
+        let jumpOffsetY = max(0, (dinoNode.position.y - (groundY + 0.8))) * 0.25
+        cameraNode.position.x = cameraCurrentX
+        cameraNode.position.y = (groundY + 4.2) + jumpOffsetY
+        cameraNode.eulerAngles.z = currentBankAngle * 0.12
+        
+        // 4. Smooth Phase-Accumulated Locomotion Animation (Silky smooth at all speeds)
         if isGrounded && !isDucking {
-            let runCycle = sin(Float(time) * currentSpeed * 1.6)
-            let cosCycle = cos(Float(time) * currentSpeed * 1.6)
+            runPhase += currentSpeed * dt * 1.3
+            tailPhase += dt * 7.5
+            
+            let runCycle = sin(runPhase)
+            let cosCycle = cos(runPhase)
             
             // Leg Swing & Knee Flex
-            leftLeg?.eulerAngles.x = runCycle * 0.65
-            rightLeg?.eulerAngles.x = -runCycle * 0.65
+            leftLeg?.eulerAngles.x = runCycle * 0.58
+            rightLeg?.eulerAngles.x = -runCycle * 0.58
             
             // Arm Claws Counter-Swing
-            leftArm?.eulerAngles.x = -runCycle * 0.45
-            rightArm?.eulerAngles.x = runCycle * 0.45
+            leftArm?.eulerAngles.x = -runCycle * 0.38
+            rightArm?.eulerAngles.x = runCycle * 0.38
             
-            // Natural Running Torso Bob & Subtle Stride Tilt
-            dinoBody?.position.y = 0.45 + abs(cosCycle) * 0.06
-            dinoBody?.eulerAngles.z = runCycle * 0.04
+            // Torso Bob – only Y position, NOT Z rotation (parent node owns all Z banking)
+            dinoBody?.position.y = 0.42 + abs(cosCycle) * 0.035
+            dinoBody?.eulerAngles = SCNVector3(0.3, 0, 0) // reset each frame, no Z sway here
             
-            // Multi-Joint Serpentine Tail Wave
-            tailNode?.eulerAngles.y = sin(Float(time) * 12.0) * 0.28
-            headNode?.eulerAngles.x = abs(runCycle) * 0.05
+            // Natural Tail Sway & Head Rhythm
+            tailNode?.eulerAngles.y = sin(tailPhase) * 0.20
+            headNode?.eulerAngles.x = abs(runCycle) * 0.035
         } else if !isGrounded {
-            // Tuck legs gracefully in air
-            leftLeg?.eulerAngles.x = 0.5
-            rightLeg?.eulerAngles.x = 0.5
+            leftLeg?.eulerAngles.x = 0.4
+            rightLeg?.eulerAngles.x = 0.4
             tailNode?.eulerAngles.y = 0
-            dinoBody?.eulerAngles.z = 0
+            dinoBody?.eulerAngles = SCNVector3(0.3, 0, 0)
         }
         
-        // 4. Move Ground Segments
+        // 5. Move Ground Segments
         let groundMove = currentSpeed * dt
         for seg in activeGroundSegments {
             seg.position.z += groundMove
@@ -459,16 +557,16 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
             }
         }
         
-        // 5. Move Clouds
+        // 6. Move Clouds
         for cloud in activeClouds {
             cloud.position.z += (currentSpeed * 0.3) * dt
             if cloud.position.z > 15 {
                 cloud.position.z = -70
-                cloud.position.x = Float.random(in: -15...15)
+                cloud.position.x = Float.random(in: -18...18)
             }
         }
         
-        // 6. Move Obstacles & Check Collisions
+        // 7. Move Obstacles & Check Collisions
         var obstaclesToRemove: [SCNNode] = []
         let dinoPos = dinoNode.position
         let dinoHitBoxHeight: Float = isDucking ? 0.7 : 1.4
@@ -476,13 +574,12 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
         for obstacle in activeObstacles {
             obstacle.position.z += currentSpeed * dt
             
-            // Check if cleared
             if obstacle.position.z > 1.5 && obstacle.value(forKey: "cleared") as? Bool != true {
                 obstacle.setValue(true, forKey: "cleared")
                 obstaclesCleared += 1
             }
             
-            // Collision Check with Dino
+            // Collision Check with Dino (3-lane xDist and zDist precision)
             let obsZ = obstacle.position.z
             let obsX = obstacle.position.x
             let obsY = obstacle.position.y
@@ -491,8 +588,7 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
             let zDist = abs(dinoPos.z - obsZ)
             let xDist = abs(dinoPos.x - obsX)
             
-            if zDist < 0.7 && xDist < 0.6 {
-                // Check vertical bounds
+            if zDist < 0.65 && xDist < 0.65 {
                 let obsBottom = obsY - (obsHeight / 2)
                 let obsTop = obsY + (obsHeight / 2)
                 let dinoBottom = dinoPos.y - 0.7
@@ -517,29 +613,27 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
             }
         }
         
-        // 7. Move Coins & Check Collection / Magnet
+        // 8. Move Coins & Check Collection / Magnet
         var coinsToRemove: [SCNNode] = []
         for coin in activeCoins {
             coin.position.z += currentSpeed * dt
-            coin.eulerAngles.y += Float.pi * dt * 2 // spin coin
+            coin.eulerAngles.y += Float.pi * dt * 2
             
             // Magnet pull
             if hasMagnet {
                 let toDino = SCNVector3(dinoPos.x - coin.position.x, (dinoPos.y + 0.2) - coin.position.y, dinoPos.z - coin.position.z)
                 let dist = sqrt(toDino.x * toDino.x + toDino.y * toDino.y + toDino.z * toDino.z)
-                if dist < 6.0 {
-                    coin.position.x += (toDino.x / dist) * 12.0 * dt
-                    coin.position.y += (toDino.y / dist) * 12.0 * dt
-                    coin.position.z += (toDino.z / dist) * 12.0 * dt
+                if dist < 6.5 {
+                    coin.position.x += (toDino.x / dist) * 14.0 * dt
+                    coin.position.y += (toDino.y / dist) * 14.0 * dt
+                    coin.position.z += (toDino.z / dist) * 14.0 * dt
                 }
             }
             
-            // Pickup Distance
             let distToDino = SCNVector3(dinoPos.x - coin.position.x, dinoPos.y - coin.position.y, dinoPos.z - coin.position.z)
             let dist = sqrt(distToDino.x * distToDino.x + distToDino.y * distToDino.y + distToDino.z * distToDino.z)
             
-            if dist < 1.2 {
-                // Collect Coin
+            if dist < 1.15 {
                 coinsCollected += 1
                 spawnCoinCollectParticles(at: coin.position)
                 gameDelegate?.dinoDidCollectCoin()
@@ -557,7 +651,7 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
             }
         }
         
-        // 8. Procedural Obstacle & Coin Spawner
+        // 9. Multi-Lane Procedural Obstacle & Coin Spawner
         let spawnThreshold = max(0.9, spawnInterval - Double(distance * 0.0015))
         if time - lastObstacleSpawnTime > spawnThreshold {
             spawnRandomObstacleAndCoins()
@@ -569,7 +663,6 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
     private func handleCollision(with obstacle: SCNNode) {
         shakeCamera()
         if hasShield {
-            // Consume Shield safely
             hasShield = false
             spawnShieldBreakParticles(at: obstacle.position)
             obstacle.removeFromParentNode()
@@ -584,7 +677,7 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
     
     private func shakeCamera() {
         guard let camera = cameraNode else { return }
-        let originalPos = SCNVector3(8, 4.5, 12)
+        let originalPos = SCNVector3(currentDinoX * 0.45, groundY + 3.5, 6.2)
         let shake1 = SCNAction.move(to: SCNVector3(originalPos.x + 0.35, originalPos.y - 0.25, originalPos.z), duration: 0.03)
         let shake2 = SCNAction.move(to: SCNVector3(originalPos.x - 0.35, originalPos.y + 0.25, originalPos.z), duration: 0.03)
         let shake3 = SCNAction.move(to: SCNVector3(originalPos.x + 0.2, originalPos.y - 0.1, originalPos.z), duration: 0.03)
@@ -598,7 +691,6 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
         isRunning = false
         shakeCamera()
         
-        // Death tumble animation
         let tumble = CABasicAnimation(keyPath: "rotation")
         tumble.fromValue = SCNVector4(0, 0, 0, 0)
         tumble.toValue = SCNVector4(0, 0, 1, Float.pi / 2)
@@ -617,57 +709,69 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
         )
     }
     
-    // MARK: - Spawning System
+    // MARK: - Multi-Lane Spawning System
     private func spawnRandomObstacleAndCoins() {
         let spawnZ: Float = -50.0
-        let obstacleType = Int.random(in: 0...3)
+        let patternType = Int.random(in: 0...4)
         
-        switch obstacleType {
+        switch patternType {
         case 0:
-            // Single Cactus
+            // Single Lane Cactus + Coin Arc on that lane
+            let laneX = lanePositions.randomElement()!
             let cactus = createCactus(tall: false)
-            cactus.position = SCNVector3(0, groundY + 0.6, spawnZ)
+            cactus.position = SCNVector3(laneX, groundY + 0.6, spawnZ)
             cactus.setValue(Float(1.2), forKey: "hitHeight")
             rootNode.addChildNode(cactus)
             activeObstacles.append(cactus)
             
-            // Spawn Coin Arc over the cactus
-            spawnCoinArc(startZ: spawnZ - 4.0)
+            spawnCoinArc(laneX: laneX, startZ: spawnZ - 4.0)
             
         case 1:
-            // Triple / Cluster Cactus
-            let cluster = createCactusCluster()
-            cluster.position = SCNVector3(0, groundY + 0.75, spawnZ)
-            cluster.setValue(Float(1.5), forKey: "hitHeight")
-            rootNode.addChildNode(cluster)
-            activeObstacles.append(cluster)
-            
-            spawnCoinArc(startZ: spawnZ - 5.0)
+            // 2-Lane Trap: Block 2 lanes, leaving 1 open escape lane!
+            let openLaneIndex = Int.random(in: 0..<lanePositions.count)
+            for (idx, laneX) in lanePositions.enumerated() {
+                if idx != openLaneIndex {
+                    let cluster = createCactusCluster()
+                    cluster.position = SCNVector3(laneX, groundY + 0.75, spawnZ)
+                    cluster.setValue(Float(1.5), forKey: "hitHeight")
+                    rootNode.addChildNode(cluster)
+                    activeObstacles.append(cluster)
+                }
+            }
+            // Reward the player with a coin trail through the open lane!
+            spawnCoinsRow(laneX: lanePositions[openLaneIndex], zPos: spawnZ, yPos: groundY + 0.6)
             
         case 2:
-            // Flying Pterodactyl (High or Low)
+            // Flying Pterodactyl in a random lane
+            let laneX = lanePositions.randomElement()!
             let isHigh = Bool.random()
             let ptero = createPterodactyl()
-            let yPos: Float = isHigh ? groundY + 2.2 : groundY + 1.2
-            ptero.position = SCNVector3(0, yPos, spawnZ)
+            let yPos: Float = isHigh ? groundY + 2.1 : groundY + 1.2
+            ptero.position = SCNVector3(laneX, yPos, spawnZ)
             ptero.setValue(Float(0.8), forKey: "hitHeight")
             rootNode.addChildNode(ptero)
             activeObstacles.append(ptero)
             
-            // If flying high, spawn coins on the ground beneath for ducking reward!
             if isHigh {
-                spawnCoinsRow(zPos: spawnZ, yPos: groundY + 0.5)
+                spawnCoinsRow(laneX: laneX, zPos: spawnZ, yPos: groundY + 0.5)
+            } else {
+                spawnCoinArc(laneX: laneX, startZ: spawnZ - 4.0)
             }
             
-        default:
-            // Tall Rock / Obelisk
+        case 3:
+            // Center Obelisk + Side Coins
             let rock = createObelisk()
             rock.position = SCNVector3(0, groundY + 0.8, spawnZ)
             rock.setValue(Float(1.6), forKey: "hitHeight")
             rootNode.addChildNode(rock)
             activeObstacles.append(rock)
             
-            spawnCoinArc(startZ: spawnZ - 4.0)
+            let rewardLane = Bool.random() ? lanePositions[0] : lanePositions[2]
+            spawnCoinsRow(laneX: rewardLane, zPos: spawnZ, yPos: groundY + 0.6)
+            
+        default:
+            // Sweeping Coin Path across all 3 lanes
+            spawnDiagonalCoinPath(startZ: spawnZ)
         }
     }
     
@@ -682,7 +786,6 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
         trunk.geometry?.materials = [mat]
         node.addChildNode(trunk)
         
-        // Arms
         let armGeo = SCNCapsule(capRadius: 0.1, height: 0.4)
         armGeo.materials = [mat]
         
@@ -721,13 +824,11 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
         let bodyMat = SCNMaterial()
         bodyMat.diffuse.contents = UIColor(red: 0.75, green: 0.25, blue: 0.25, alpha: 1.0)
         
-        // Body & Beak
         let body = SCNNode(geometry: SCNCone(topRadius: 0.02, bottomRadius: 0.2, height: 0.9))
         body.geometry?.materials = [bodyMat]
         body.eulerAngles = SCNVector3(Float.pi / 2, 0, 0)
         ptero.addChildNode(body)
         
-        // Flapping Wings
         let wingMat = SCNMaterial()
         wingMat.diffuse.contents = UIColor(red: 0.85, green: 0.35, blue: 0.35, alpha: 1.0)
         
@@ -736,7 +837,6 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
             wing.geometry?.materials = [wingMat]
             wing.position = SCNVector3(isLeft ? -0.45 : 0.45, 0, 0)
             
-            // Flap animation
             let flap = CABasicAnimation(keyPath: "eulerAngles.z")
             flap.fromValue = isLeft ? -0.4 : 0.4
             flap.toValue = isLeft ? 0.4 : -0.4
@@ -761,7 +861,7 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
         return node
     }
     
-    // MARK: - Coin Creation & Spawners
+    // MARK: - Coin Creation & Multi-Lane Spawners
     private func createCoinNode() -> SCNNode {
         let node = SCNNode()
         let coinGeo = SCNCylinder(radius: 0.24, height: 0.08)
@@ -777,21 +877,30 @@ class Dino3DScene: SCNScene, SCNSceneRendererDelegate, SCNPhysicsContactDelegate
         return node
     }
     
-    private func spawnCoinArc(startZ: Float) {
+    private func spawnCoinArc(laneX: Float, startZ: Float) {
         for i in 0..<4 {
             let coin = createCoinNode()
             let normalized = Float(i) / 3.0
             let arcHeight = sin(normalized * Float.pi) * 1.8 + 1.2
-            coin.position = SCNVector3(0, groundY + arcHeight, startZ - Float(i) * 2.2)
+            coin.position = SCNVector3(laneX, groundY + arcHeight, startZ - Float(i) * 2.2)
             rootNode.addChildNode(coin)
             activeCoins.append(coin)
         }
     }
     
-    private func spawnCoinsRow(zPos: Float, yPos: Float) {
+    private func spawnCoinsRow(laneX: Float, zPos: Float, yPos: Float) {
         for i in 0..<3 {
             let coin = createCoinNode()
-            coin.position = SCNVector3(0, yPos, zPos - Float(i) * 2.0)
+            coin.position = SCNVector3(laneX, yPos, zPos - Float(i) * 2.0)
+            rootNode.addChildNode(coin)
+            activeCoins.append(coin)
+        }
+    }
+    
+    private func spawnDiagonalCoinPath(startZ: Float) {
+        for (i, laneX) in lanePositions.enumerated() {
+            let coin = createCoinNode()
+            coin.position = SCNVector3(laneX, groundY + 0.6, startZ - Float(i) * 2.5)
             rootNode.addChildNode(coin)
             activeCoins.append(coin)
         }
